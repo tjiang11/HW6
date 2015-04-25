@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 /**
  * Given a collection of match-cars that lie in a grid, 
  * generate the network of tunnels that will require the 
@@ -28,9 +30,11 @@ public final class BackyardDig {
         // TODO Auto-generated method stub
         System.out.println("This assignment is long as hell.");
         System.out.println("First change.");
-        String fileName = "digInput1.txt";
+        String inputFile = args[0];
+        String outputFile = args[1];
+        
         try {
-            FileReader fr = new FileReader(fileName);
+            FileReader fr = new FileReader(inputFile);
             BufferedReader br = new BufferedReader(fr);
             br.close();
         } catch (FileNotFoundException e) {
@@ -38,6 +42,16 @@ public final class BackyardDig {
         } catch (IOException e) {
             System.out.println("IOException");
         }
+        
+        
+        try {
+            PrintWriter pr = new PrintWriter(outputFile, "UTF-8");
+            pr.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } 
         
     }
 

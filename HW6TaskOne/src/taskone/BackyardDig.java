@@ -23,6 +23,7 @@ public final class BackyardDig {
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         System.out.println("This assignment is long as hell.");
+        System.out.println("First change.");
     }
 
 }

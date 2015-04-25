@@ -37,19 +37,28 @@ public final class BackyardDig {
         Scanner scan;
         int rows;
         int cols;
+        int[][] grid;
         
         try {
+            //Grab rows and columns from input
             scan = new Scanner(inputFile);
             rows = scan.nextInt();
             cols = scan.nextInt();
+            grid = new int[rows][cols];
+            
+            //Skip Empty Line
+            scan.nextLine();
+            scan.nextLine();
+            System.out.println(scan.nextLine());
             scan.close();
+            
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
             System.out.println("Error: File not found");
         }
-       
         
-      
+        
+        
         
         
         try {

@@ -38,6 +38,8 @@ public final class BackyardDig {
         int cols;
         int[][] grid;
         
+        AdjacencyList al = new AdjacencyList(inputFile);
+        
         try {
             //Grab rows and columns from input
             scan = new Scanner(inputFile);

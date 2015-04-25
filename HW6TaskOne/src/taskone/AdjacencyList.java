@@ -40,10 +40,27 @@ public class AdjacencyList {
             Scanner scan = new Scanner(input);
             this.rows = scan.nextInt();
             this.cols = scan.nextInt();
+            this.array = new int [this.rows * this.cols];
             scan.nextLine();
             scan.nextLine();
-            while (scan.next() != null) {
-                System.out.println(scan.next());
+            scan.useDelimiter("");
+            int charPos = 0;
+            while (scan.hasNext()) {
+                if (!scan.hasNextInt()) {
+                    scan.next();
+                } else {
+                    switch (charPos) {
+                        case 0:
+                            int startposx = scan.nextInt();
+                            int startposy = scan.nextInt();
+                            int vertexNum = this.cols * startposx + startposy;
+                            
+                            int endposx = scan.nextInt();
+                            int endposy = scan.nextInt();
+                    }
+                   // System.out.println(scan.nextInt());
+                }
+                //System.out.println(scan.next());
             }
             scan.close();
         } catch (FileNotFoundException e1) {

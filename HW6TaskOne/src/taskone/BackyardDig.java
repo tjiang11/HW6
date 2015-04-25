@@ -1,6 +1,7 @@
 package taskone;
 
-import java.io.BufferedReader;
+import java.util.Scanner;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -30,18 +31,25 @@ public final class BackyardDig {
         // TODO Auto-generated method stub
         System.out.println("This assignment is long as hell.");
         System.out.println("First change.");
-        String inputFile = args[0];
+        File inputFile = new File(args[0]);
         String outputFile = args[1];
         
+        Scanner scan;
+        int rows;
+        int cols;
+        
         try {
-            FileReader fr = new FileReader(inputFile);
-            BufferedReader br = new BufferedReader(fr);
-            br.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Error opening file");
-        } catch (IOException e) {
-            System.out.println("IOException");
+            scan = new Scanner(inputFile);
+            rows = scan.nextInt();
+            cols = scan.nextInt();
+            scan.close();
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+            System.out.println("Error: File not found");
         }
+       
+        
+      
         
         
         try {

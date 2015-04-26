@@ -46,11 +46,9 @@ public final class BackyardDig {
             rows = scan.nextInt();
             cols = scan.nextInt();
             grid = new int[rows][cols];
-            
             //Skip Empty Line
             scan.nextLine();
             scan.nextLine();
-            System.out.println(scan.nextLine());
             scan.close();
             
         } catch (FileNotFoundException e1) {
@@ -58,8 +56,10 @@ public final class BackyardDig {
             System.out.println("Error: File not found");
         }
         
-        
-        
+        // DIJKSTRA'S ALGORITHM
+        int[] dist = new int[al.getNumVtcs()];
+        int[] prev = new int[al.getNumVtcs()];
+        boolean[] found = new boolean[al.getNumVtcs()];
         
         
         try {

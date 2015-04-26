@@ -57,28 +57,35 @@ public final class BackyardDig {
         }
         
         // DIJKSTRA'S ALGORITHM
-        int[] dist = new int[al.getNumVtcs()];
-        int[] prev = new int[al.getNumVtcs()];
-        boolean[] found = new boolean[al.getNumVtcs()];
+        int[] dist = new int[al.getSize()];
+        int[] prev = new int[al.getSize()];
+        boolean[] found = new boolean[al.getSize()];
         
         int startVtx = al.array[0].getFirst().name;
         dist[startVtx] = 0;
         int numVtcs = al.getNumVtcs();
         int i;
+        int minVtx = startVtx;
         for (int k = 0; k < numVtcs; k++) {
             for (i = 0; i < numVtcs; i++) {
                 int min = Integer.MAX_VALUE;
-                int minVtx;
-                if (dist[i] < min) {
+                if (dist[i] < min && !found[i]) {
                     min = dist[i];
                     minVtx = i;
                 }
             }
-            found[i] = true;
-            for (int c = 0; c < al.array[i].size(); c++) {
-                if (dist[i] + al.array[i].get(c).weight 
-                        < dist[al.array[i].get(c).name]) {
-                    
+            found[minVtx] = true;
+            
+            for (int c = 0; c < al.array[minVtx].size(); c++) {
+                //System.out.println(al.array[minVtx].get(c).name);
+                int cost = al.array[minVtx].get(c).weight;
+                int destVtx = al.array[minVtx].get(c).name;
+                System.out.println("START:" + minVtx);
+                System.out.println("COST:" + cost);
+                System.out.println("DEST:" + destVtx + "\n");
+                if (dist[i] + cost < dist[destVtx]) {
+                    dist[destVtx] = dist[i] + cost;
+                    prev[destVtx] = minVtx;
                 }
             }
             

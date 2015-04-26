@@ -61,7 +61,28 @@ public final class BackyardDig {
         int[] prev = new int[al.getNumVtcs()];
         boolean[] found = new boolean[al.getNumVtcs()];
         
-        
+        int startVtx = al.array[0].getFirst().name;
+        dist[startVtx] = 0;
+        int numVtcs = al.getNumVtcs();
+        int i;
+        for (int k = 0; k < numVtcs; k++) {
+            for (i = 0; i < numVtcs; i++) {
+                int min = Integer.MAX_VALUE;
+                int minVtx;
+                if (dist[i] < min) {
+                    min = dist[i];
+                    minVtx = i;
+                }
+            }
+            found[i] = true;
+            for (int c = 0; c < al.array[i].size(); c++) {
+                if (dist[i] + al.array[i].get(c).weight 
+                        < dist[al.array[i].get(c).name]) {
+                    
+                }
+            }
+            
+        }
         try {
             PrintWriter pr = new PrintWriter(outputFile, "UTF-8");
             pr.close();

@@ -43,46 +43,91 @@ public class AdjacencyList {
             this.rows = scan.nextInt();
             this.cols = scan.nextInt();
             int size = this.rows * this.cols;
+            this.array = (LinkedList<Vertex>[]) new LinkedList<?>[size];
             for (int k = 0; k < size; k++) {
                 this.array[k] = new LinkedList<Vertex>();
             }
             scan.nextLine();
             scan.nextLine();
+            /*while (scan.hasNextLine()) {
+                Scanner iscan = new Scanner(scan.nextLine());
+                while 
+                iscan.close();
+            }*/
+            
+       
             scan.useDelimiter("");
-            int charPos = 0;
-            while (scan.hasNext()) {
-                if (!scan.hasNextInt()) {
+            int h = 0;
+            while (scan.hasNextLine()) {
+                while (!scan.hasNextInt()) {
                     scan.next();
-                } else {
-                    switch (charPos) {
-                        case 0:
-                            int startposx = scan.nextInt();
-                            int startposy = scan.nextInt();
-                            int startVertexNum = this.cols * startposx + startposy;
-                            
-                            int endposx = scan.nextInt();
-                            int endposy = scan.nextInt();
-                            int endVertexNum = this.cols * endposx + endposy;
-                            int edgeWeight = scan.nextInt();
-                            this.array[startVertexNum].add(new Vertex(endVertexNum, edgeWeight));
-                    }
-                   // System.out.println(scan.nextInt());
                 }
-                //System.out.println(scan.next());
+                
+                int startposx = scan.nextInt();
+                /*while (scan.hasNextInt()) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("");
+                    sb.append(startposx);
+                    String str = sb.toString();
+                    startposx = Integer.parseInt(str);
+                }*/
+                
+                System.out.print(startposx + " ");
+                while (!scan.hasNextInt()) {
+                    scan.next();
+                }
+             
+            
+                int startposy = scan.nextInt();
+                System.out.print(startposy + " ");
+                int startVertexNum = this.cols * startposx + startposy;
+                
+                while (!scan.hasNextInt()) {
+                    scan.next();
+                }
+            
+                int endposx = scan.nextInt();
+                System.out.print(endposx + " ");
+                while (!scan.hasNextInt()) {
+                    scan.next();
+                }
+                int endposy = scan.nextInt();
+                System.out.print(endposy + " ");
+                int endVertexNum = this.cols * endposx + endposy;
+                while (!scan.hasNextInt()) {
+                    scan.next();
+                }
+                int edgeWeight = scan.nextInt();
+                if (scan.hasNextInt()) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("");
+                    sb.append(edgeWeight);
+                    sb.append(scan.nextInt());
+                    String str = sb.toString();
+                    edgeWeight = Integer.parseInt(str);
+                }
+                System.out.println(edgeWeight);
+                this.array[startVertexNum].add(
+                        new Vertex(endVertexNum, edgeWeight));
+                h++;
+                scan.nextLine();
             }
             scan.close();
+            
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
             System.out.println("Error: File not found");
         }
         
-        /**
-         * Inner vertex class to be placed in 
-         * linked lists in the adjacency list.
-         * @author Tony
-         *
-         */
+    /**
+     * Inner vertex class to be placed in 
+     * linked lists in the adjacency list.
+     * @author Tony
+     *
+     */
     }
+    
+   
     static class Vertex {
         
         int name;

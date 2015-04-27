@@ -32,17 +32,18 @@ public final class BackyardDig {
         String outputFile = args[1];
         
         Scanner scan;
-        int rows = 0;
+        
         int cols = 0;
+        
         
         AdjacencyList al = new AdjacencyList(inputFile);
         System.out.println(al.getNumVtcs());
         try {
             //Grab rows and columns from input
             scan = new Scanner(inputFile);
-            rows = scan.nextInt();
+            scan.nextInt();
             cols = scan.nextInt();
-            grid = new int[rows][cols];
+            
             //Skip Empty Line
             scan.nextLine();
             scan.nextLine();

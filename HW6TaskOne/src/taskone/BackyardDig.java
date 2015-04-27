@@ -19,6 +19,7 @@ public final class BackyardDig {
      * Shutup Checkstyle.
      */
     private BackyardDig() {   
+        
     }
     
     /**
@@ -27,9 +28,6 @@ public final class BackyardDig {
      * grid size and car locations based on edges and respective weights.
      */
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        System.out.println("This assignment is long as hell.");
-        System.out.println("First change.");
         File inputFile = new File(args[0]);
         String outputFile = args[1];
         

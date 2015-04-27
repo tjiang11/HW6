@@ -34,7 +34,6 @@ public final class BackyardDig {
         Scanner scan;
         int rows = 0;
         int cols = 0;
-        int[][] grid;
         
         AdjacencyList al = new AdjacencyList(inputFile);
         System.out.println(al.getNumVtcs());

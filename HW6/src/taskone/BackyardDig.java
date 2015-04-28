@@ -16,7 +16,7 @@ import java.io.UnsupportedEncodingException;
 public final class BackyardDig {
 
     /**
-     * Shutup Checkstyle.
+     * Shutup Checkstyle..
      */
     private BackyardDig() {   
         

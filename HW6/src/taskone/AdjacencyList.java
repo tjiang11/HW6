@@ -32,106 +32,135 @@ public class AdjacencyList {
      * Number of columns in grid.
      */
     int cols;
+    
+    /**
+     * Scanner to parse the input file.
+     */
+    Scanner scan;
     /**
      * Constructor for AdjacencyList given an input file containing
      * all vertices with edge weights.
      * @param input input file
      */
     public AdjacencyList(File input) {
+        this.numVtcs = 0;
+        
         try {
-            Scanner scan = new Scanner(input);
-            this.rows = scan.nextInt();
-            this.cols = scan.nextInt();
+            this.scan = new Scanner(input);
+            this.rows = this.scan.nextInt();
+            this.cols = this.scan.nextInt();
             int size = this.rows * this.cols;
+            boolean[] found = new boolean[size];
+            
             this.array = (LinkedList<Vertex>[]) new LinkedList<?>[size];
             for (int k = 0; k < size; k++) {
                 this.array[k] = new LinkedList<Vertex>();
             }
-            scan.nextLine();
-            scan.nextLine();
-            /*while (scan.hasNextLine()) {
-                Scanner iscan = new Scanner(scan.nextLine());
-                while 
-                iscan.close();
-            }*/
+            this.scan.nextLine();
+            this.scan.nextLine();
+            this.scan.useDelimiter("");
             
-       
-            scan.useDelimiter("");
-            int h = 0;
-            while (scan.hasNextLine()) {
-                while (!scan.hasNextInt()) {
-                    scan.next();
-                }
-                
-                int startposx = scan.nextInt();
-                /*while (scan.hasNextInt()) {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("");
-                    sb.append(startposx);
-                    String str = sb.toString();
-                    startposx = Integer.parseInt(str);
-                }*/
-                
+            while (this.scan.hasNextLine()) {
+                this.runInt();
+                int startposx = this.scan.nextInt();
                 System.out.print(startposx + " ");
-                while (!scan.hasNextInt()) {
-                    scan.next();
-                }
-             
-            
-                int startposy = scan.nextInt();
+                
+                this.runInt();
+                int startposy = this.scan.nextInt();
                 System.out.print(startposy + " ");
+                
                 int startVertexNum = this.cols * startposx + startposy;
                 
-                while (!scan.hasNextInt()) {
-                    scan.next();
-                }
-            
-                int endposx = scan.nextInt();
+                this.runInt();
+                int endposx = this.scan.nextInt();
                 System.out.print(endposx + " ");
-                while (!scan.hasNextInt()) {
-                    scan.next();
-                }
-                int endposy = scan.nextInt();
+                
+                this.runInt();
+                int endposy = this.scan.nextInt();
                 System.out.print(endposy + " ");
+                
                 int endVertexNum = this.cols * endposx + endposy;
-                while (!scan.hasNextInt()) {
-                    scan.next();
-                }
-                int edgeWeight = scan.nextInt();
-                if (scan.hasNextInt()) {
+                
+                this.runInt();
+                int edgeWeight = this.scan.nextInt();
+                while (this.scan.hasNextInt()) {
                     StringBuilder sb = new StringBuilder();
                     sb.append("");
                     sb.append(edgeWeight);
-                    sb.append(scan.nextInt());
+                    sb.append(this.scan.nextInt());
                     String str = sb.toString();
                     edgeWeight = Integer.parseInt(str);
                 }
                 System.out.println(edgeWeight);
+                
+                if (!found[endVertexNum]) {
+                    this.numVtcs++;
+                    found[endVertexNum] = true;
+                }
+                if (!found[startVertexNum]) {
+                    this.numVtcs++;
+                    found[startVertexNum] = true;
+                }
+                
                 this.array[startVertexNum].add(
                         new Vertex(endVertexNum, edgeWeight));
-                h++;
-                scan.nextLine();
+                this.array[endVertexNum].add(
+                        new Vertex(startVertexNum, edgeWeight));
+                this.scan.nextLine();
             }
-            scan.close();
-            
+            this.scan.close();
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
             System.out.println("Error: File not found");
         }
-        
+    }
+    
+    /**
+     * return number of vertices.
+     * @return number of vertices
+     */
+    public int getNumVtcs() {
+        return this.numVtcs;
+    }
+    
+    /**
+     * Return size.
+     * @return the size of the grid.
+     */
+    public int getSize() {
+        return this.rows * this.cols;
+    }
+    
+    
+    /**
+     * 
+     * @param scan
+     */
+    public void runInt() {
+        while (!this.scan.hasNextInt()) {
+            this.scan.next();
+        }
+    }
+    
     /**
      * Inner vertex class to be placed in 
      * linked lists in the adjacency list.
      * @author Tony
      *
      */
-    }
-    
-   
     static class Vertex {
         
+        /**
+         * name (number) of the vertex.
+         */
         int name;
+        /**
+         * Cost to get to this vertex from parent vertex.
+         */
         int weight;
+        /**
+         * Pointer to next neighbor.
+         */
         Vertex next;
         
         /**

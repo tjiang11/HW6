@@ -138,6 +138,11 @@ public final class CodeSort {
                 return result;
             }
         }
+        if (charindex >= w1.length()) {
+            return true;
+        } else if (charindex >= w2.length()) {
+            return false;
+        }
         return false;
     }
     

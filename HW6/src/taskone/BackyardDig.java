@@ -54,7 +54,8 @@ public final class BackyardDig {
             System.out.println("Error: File not found");
         }
         
-        // DIJKSTRA'S ALGORITHM
+        // PRIMS'S ALGORITHM
+        
         int[] dist = new int[al.getSize()];
         Arrays.fill(dist, Integer.MAX_VALUE);
         int[] prev = new int[al.getSize()];
@@ -77,20 +78,21 @@ public final class BackyardDig {
             found[minVtx] = true;
             
             for (int c = 0; c < al.array[minVtx].size(); c++) {
-                
-                int cost = al.array[minVtx].get(c).weight;
-                int destVtx = al.array[minVtx].get(c).name;
-                
-                if (dist[minVtx] + cost < dist[destVtx]) {
-                    dist[destVtx] = dist[minVtx] + cost;
-                    prev[destVtx] = minVtx;
+                if (!found[al.array[minVtx].get(c).name]) {
+                    int cost = al.array[minVtx].get(c).weight;
+                    int destVtx = al.array[minVtx].get(c).name;
+                    
+                    if (cost < dist[destVtx]) {
+                        dist[destVtx] = cost;
+                        prev[destVtx] = minVtx;
+                    }
                 }
             }
         }
 
         try {
             PrintWriter pr = new PrintWriter(outputFile, "UTF-8");
-            
+            //pr.println(twork);
             //Caclulate Totalwork.
             int totalWork = calculateWork(prev, dist, startVtx);
             pr.println(totalWork);
@@ -127,9 +129,6 @@ public final class BackyardDig {
             while (!(index == startVtx)) {
                 if (edgenum == 0) {
                     totalWork += dist[index];
-                    
-                } else if (edgenum == 1) {
-                    totalWork -= dist[index];
                 }
                 index = prev[index];
                 edgenum++;

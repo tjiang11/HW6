@@ -1,3 +1,5 @@
+package taskthree;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.PriorityQueue;
@@ -57,7 +59,7 @@ class Location implements Comparable<Location> {
      * @return if there exists a smaller distance
      */
     public int compareTo(Location other) {
-        return Double.compare(minDistance, other.minDistance);
+        return Double.compare(this.minDistance, other.minDistance);
     }
        
 }   

@@ -8,7 +8,8 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 /**
  * Given a collection of match-cars that lie in a grid, 
- * generate the network of tunnels that will require the 
+ * generate the network of tunnels t
+ * hat will require the 
  * least work the reach every car.
  * @author Tony Jiang, Devin Sun, Suyi Liu
  *

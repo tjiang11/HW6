@@ -30,29 +30,11 @@ public final class BackyardDig {
     public static void main(String[] args) {
         File inputFile = new File(args[0]);
         String outputFile = args[1];
-        
-        Scanner scan;
-        
-        int cols = 0;
-        
-        
+        int cols = 0;             
         AdjacencyList al = new AdjacencyList(inputFile);
         System.out.println(al.getNumVtcs());
-        try {
-            //Grab rows and columns from input
-            scan = new Scanner(inputFile);
-            scan.nextInt();
-            cols = scan.nextInt();
-            
-            //Skip Empty Line
-            scan.nextLine();
-            scan.nextLine();
-            scan.close();
-            
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-            System.out.println("Error: File not found");
-        }
+        cols = grabCols(inputFile);
+        
         
         // PRIMS'S ALGORITHM
         
@@ -61,7 +43,7 @@ public final class BackyardDig {
         int[] prev = new int[al.getSize()];
         boolean[] found = new boolean[al.getSize()];
         
-        int startVtx = al.array[0].getFirst().name;
+        int startVtx = al.array[0].get(0).name;
         dist[startVtx] = 0;
         int numVtcs = al.getNumVtcs();
         int i;
@@ -76,8 +58,8 @@ public final class BackyardDig {
                 }
             }
             found[minVtx] = true;
-            
-            for (int c = 0; c < al.array[minVtx].size(); c++) {
+            int size = al.array[minVtx].size();
+            for (int c = 0; c < size; c++) {
                 if (!found[al.array[minVtx].get(c).name]) {
                     int cost = al.array[minVtx].get(c).weight;
                     int destVtx = al.array[minVtx].get(c).name;
@@ -159,6 +141,27 @@ public final class BackyardDig {
                         + "," + endy + ")");
             }
         }
+    }
+    
+    /**
+     * Grab number of columns.
+     * @param inputFile input file
+     * @return number of columns
+     */
+    public static int grabCols(File inputFile) {
+        try {
+            //Grab rows and columns from input
+            Scanner scan;
+            scan = new Scanner(inputFile);
+            scan.nextInt();
+            int cols = scan.nextInt();
+            scan.close();
+            return cols;
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+            System.out.println("Error: File not found");
+        }
+        return 0;
     }
 
 }

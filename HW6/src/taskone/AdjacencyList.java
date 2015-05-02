@@ -1,7 +1,7 @@
 package taskone;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -15,7 +15,7 @@ public class AdjacencyList {
      * Array to contain pointers to each neighboring vertex with the 
      * respective edge weight.
      */
-    LinkedList<Vertex>[] array;
+    ArrayList<Vertex>[] array;
     /** 
      * Scanner object for parsing the input file.
      */
@@ -52,9 +52,9 @@ public class AdjacencyList {
             int size = this.rows * this.cols;
             boolean[] found = new boolean[size];
             
-            this.array = (LinkedList<Vertex>[]) new LinkedList<?>[size];
+            this.array = (ArrayList<Vertex>[]) new ArrayList<?>[size];
             for (int k = 0; k < size; k++) {
-                this.array[k] = new LinkedList<Vertex>();
+                this.array[k] = new ArrayList<Vertex>();
             }
             this.scan.nextLine();
             this.scan.nextLine();
@@ -161,7 +161,6 @@ public class AdjacencyList {
         /**
          * Pointer to next neighbor.
          */
-        Vertex next;
         
         /**
          * Constructor for vertex.
@@ -171,7 +170,6 @@ public class AdjacencyList {
         public Vertex(int myname, int myweight) {
             this.name = myname;
             this.weight = myweight;
-            this.next = null;
         }
     }
     

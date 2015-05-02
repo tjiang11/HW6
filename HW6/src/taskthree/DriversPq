@@ -1,4 +1,3 @@
-
 /**
  * Drivers priority queue.
  * @author Suyi
@@ -41,6 +40,7 @@ public class DriversPq {
      * Add an element.
      * @param x the entry to be added
      * @param value the value to be stored
+     * @param add the address of the driver
      */
     public void insert(Double x, int value, String add) {
         Driver e = new Driver(x, value, add);
@@ -68,27 +68,11 @@ public class DriversPq {
         }
         return tmp;
     }
-    
-    /**
-     * Find the right entry.
-     * @param value the value that we need to use
-     * @return the right entry
-     */
-    public Integer findDriver(int value) {
 
-        for (int i = 1; i < this.array.length; i++) {
-            if (this.array[i] != null) {
-                if (this.array[i].getId() == value) {
-                    return i;
-                } 
-            }
-        }
-        return 0;
-    }
     
     /**
      * Delete the min value.
-     * 
+     * @return the deleted item
      */
     public Driver deleteMin() {
         if (this.size == 0) {
@@ -101,33 +85,7 @@ public class DriversPq {
         }
     }
     
-//     /**
-//     * Delete the certain item.
-//     * @param value the item
-//     */
-//    public void delete(int value) {
-//        int i = this.findDriver(value);
-//        this.array[i] = this.array[this.size--];
-//        this.percolateDown(i);
-//    }
-    
-//    /**
-//     * Find the largest occurrance.
-//     * @return largest occurrance
-//     */
-//    public Integer largest() {  
-//        int largest = this.array[this.size / 2].getKey();
-//        if (this.size == 1) {
-//            largest = this.array[1].getKey();
-//        } else {
-//            for (int i = this.size / 2; i <= this.size - 1; i++) {
-//                if (this.array[i].getKey() < this.array[i + 1].getKey()) {
-//                    largest = this.array[i + 1].getKey();
-//                }
-//            }
-//        }
-//        return largest;
-//    }
+
     
     /**
      * Delete the min.
@@ -156,40 +114,13 @@ public class DriversPq {
             }
             if (this.array[child].getKey() < tmp.getKey()) {
                 this.array[hole] = this.array[child];
-            } else {break;}
+            } else {
+                break;
+            }
         }
         this.array[hole] = tmp;
     }
     
-    /**
-     * Sets the new key.
-     * @param value the value entered
-     */
-    public void setNewkey(int value) {
-        Integer i = this.findDriver(value);
-        this.array[i].setKey();
-    }
-    
-    /**
-     * Report the most popular stuff.
-     * @param k the numbers of stuff being reported
-     */
-    public void report(int k) {
-        if (k <= 0) {
-            throw new IllegalArgumentException();
-        }
-//        if (k < this.size) {
-        for (int i = 1; i <= this.size; i++) {
-            System.out.println("        " + this.array[i].getId() 
-                        + "(" + this.array[i].getKey() + ")");
-        }
-//        } else {
-//            for (int i = 1; i <= k; i++) {
-//                System.out.println(this.array[i].getValue() 
-//                        + "(" + this.array[i].getKey() + ")");
-//            }
-//        }
-    }
     
     /**
     An entry class.
@@ -202,6 +133,9 @@ public class DriversPq {
       /** A reference to the value. */
         private Integer id;
         
+      /**
+       * The address of the driver.
+       */
         private String address;
         
        
@@ -210,8 +144,9 @@ public class DriversPq {
 
        /**
         * Construct the key entry.
-        * @param parakey the key of the entry
-        * @param paravalue the value of the entry
+        * @param parakey the key of the driver
+        * @param paravalue the value of the driver
+        * @param paraaddress the location of the driver
         */
         public Driver(Double parakey, int paravalue, String paraaddress) {
             this.key = parakey;
@@ -244,23 +179,14 @@ public class DriversPq {
             this.key++;
         }
        
+        /**
+         * Get the address of the token.
+         * @return the address of the driver
+         */
         public String getAddress() {
-        	return this.address;
+            return this.address;
         }
-//        /**
-//         * Set the value.
-//         * @param paravalue the value
-//         */
-//        public void setValue(int paravalue) {
-//            this.id = paravalue;
-//        }
-//       /**
-//        * Check if the entry is deleted.
-//        * @return if it is deleted
-//        */
-//        public boolean isDeleted() {
-//            return this.isDeleted;
-//        }
+
 
        /**
         * Put entry to a string.
@@ -274,7 +200,4 @@ public class DriversPq {
         }
 
     }
-    
-    
-
 }

@@ -1,0 +1,3 @@
+In the taxis class, We used two array lists to represent the possible locations and the weighed connections between the locations. The locations list stores the locations of each vertex. The connections list is the updated version of the location list, with each vertex  ’s adjacencies list updated with its neighbors and the cost on the road.
+We also used minimum heap data structure to help me get the first n drivers who has the shortest path connection to the pick up location by deleting the min every time.
+In order to find the shortest path from each location to the pickup location, I adopted Dijkstra's algorithm.
